@@ -9,6 +9,8 @@ class PracticaJenkinsApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// ERROR INTENCIONAL - Rama feature/auth-error-discord
+		Assertions.fail("Error intencional - Prueba Discord FAIL");
 	}
 
 }
