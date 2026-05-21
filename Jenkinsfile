@@ -32,8 +32,8 @@ pipeline {
                  """
             
             // Notificación Discord
-            bat """
-                curl -H "Content-Type: application/json" -d "{\\"content\\": \\"✅ EXITO EN JENKINS | Proyecto: ${env.JOB_NAME} | Build: #${env.BUILD_NUMBER}\\"}" https://discordapp.com/api/webhooks/1507119197937733735/HCfw4Ch9k8aeUn2hvCE-uKMKUjuJLwv2Nqkm5ZGkq0hqHXbWxdK7tiVi8Ge83ZsscFpX
+            sh """
+                curl -H "Content-Type: application/json" -d '{"content": "✅ **EXITO EN JENKINS** | Proyecto: ${env.JOB_NAME} | Build: #${env.BUILD_NUMBER}"}' https://discordapp.com/api/webhooks/1507119197937733735/HCfw4Ch9k8aeUn2hvCE-uKMKUjuJLwv2Nqkm5ZGkq0hqHXbWxdK7tiVi8Ge83ZsscFpX
             """
         }
 
@@ -50,8 +50,8 @@ pipeline {
                  """
 
             // Notificación Discord
-            bat """
-                curl -H "Content-Type: application/json" -d "{\\"content\\": \\"❌ FALLO EN JENKINS | Proyecto: ${env.JOB_NAME} | Build: #${env.BUILD_NUMBER}\\"}" https://discordapp.com/api/webhooks/1507119197937733735/HCfw4Ch9k8aeUn2hvCE-uKMKUjuJLwv2Nqkm5ZGkq0hqHXbWxdK7tiVi8Ge83ZsscFpX
+            sh """
+                curl -H "Content-Type: application/json" -d '{"content": "❌ **FALLO EN JENKINS** | Proyecto: ${env.JOB_NAME} | Build: #${env.BUILD_NUMBER}"}' https://discordapp.com/api/webhooks/1507119197937733735/HCfw4Ch9k8aeUn2hvCE-uKMKUjuJLwv2Nqkm5ZGkq0hqHXbWxdK7tiVi8Ge83ZsscFpX
             """
         }
     }
