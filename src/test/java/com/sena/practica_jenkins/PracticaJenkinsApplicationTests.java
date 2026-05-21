@@ -8,7 +8,6 @@ class PracticaJenkinsApplicationTests {
 
 	@Test
 	void contextLoads() {
-		org.junit.jupiter.api.Assertions.fail("Fallo intencional para demostrar la notificación de ERROR en Gmail");
 	}
 
 }
