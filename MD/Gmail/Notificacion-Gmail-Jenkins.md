@@ -196,3 +196,30 @@ Guarda la imagen como `foto9_correo_recibido.png` en la carpeta `imagenes` y col
 
 ![FOTO 9: Correo del build recibido en la bandeja de entrada de Gmail](foto9_correo_recibido.png)
 ---
+
+## 5️⃣ Paso 5 – Automatización con Webhook de GitHub y Túnel (Avanzado) {#cap-webhook}
+
+Para que Jenkins se ejecute automáticamente cada vez que hagas `git push` en tu repositorio local sin necesidad de pulsar manualmente "Build Now":
+
+1. **Abrir el túnel SSH:** En CMD o PowerShell de tu PC, mantén abierto el túnel:
+   ```bash
+   ssh -R 80:localhost:8080 nokey@localhost.run
+   ```
+2. **Configurar el Webhook en GitHub:** En **Settings** → **Webhooks** de tu repositorio en GitHub, añade un webhook con tu URL del túnel + `/github-webhook/`, Content type: `application/json`, y SSL deshabilitado.
+3. **Activar en Jenkins:** En la configuración de tu Pipeline `verificacion-git`, activa la casilla **GitHub hook trigger for GITScm polling** y guarda cambios.
+
+---
+📸 **FOTO 10 A TOMAR:** Captura de pantalla de la sección de **Webhooks** en tu repositorio de GitHub, mostrando el webhook creado con el círculo verde de éxito (o gris al inicio).
+Guarda la imagen como `foto10_webhook_success.png` en la carpeta `MD/Gmail/` y colócala aquí:
+
+![FOTO 10: Webhook de GitHub configurado exitosamente](foto10_webhook_success.png)
+---
+
+✅ **Resultado:** Al hacer push o reenviar el payload desde GitHub, el Webhook envió la señal correctamente a través del túnel hasta Jenkins. Esto disparó de forma **100% automática** la ejecución del **Build #3**, comprobando que nuestra integración continua (CI) funciona de maravilla.
+
+---
+📸 **FOTO 11 A TOMAR:** Captura de pantalla de tu Jenkins mostrando el **Build #3** completado automáticamente (en color verde) dentro del historial de ejecuciones.
+Guarda la imagen como `foto11_build_automatico.png` en la carpeta `MD/Gmail/` y colócala aquí:
+
+![FOTO 11: Build automático disparado por el Webhook](foto11_build_automatico.png)
+---
