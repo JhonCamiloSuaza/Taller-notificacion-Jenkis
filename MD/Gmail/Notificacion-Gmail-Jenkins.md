@@ -215,3 +215,11 @@ Guarda la imagen como `foto10_webhook_success.png` en la carpeta `MD/Gmail/` y c
 ![FOTO 10: Webhook de GitHub configurado exitosamente](foto10_webhook_success.png)
 ---
 
+✅ **Resultado:** Al hacer push o reenviar el payload desde GitHub, el Webhook envió la señal correctamente a través del túnel hasta Jenkins. Esto disparó de forma **100% automática** la ejecución del **Build #3**, comprobando que nuestra integración continua (CI) funciona de maravilla.
+
+---
+📸 **FOTO 11 A TOMAR:** Captura de pantalla de tu Jenkins mostrando el **Build #3** completado automáticamente (en color verde) dentro del historial de ejecuciones.
+Guarda la imagen como `foto11_build_automatico.png` en la carpeta `MD/Gmail/` y colócala aquí:
+
+![FOTO 11: Build automático disparado por el Webhook](foto11_build_automatico.png)
+---
