@@ -4,6 +4,8 @@ pipeline {
     stages {
         stage('Build and Test') {
             steps {
+                // Dar permisos de ejecución al Maven Wrapper en Linux
+                sh 'chmod +x mvnw'
                 // Usa el wrapper Maven incluido en tu proyecto
                 sh './mvnw clean verify'
             }
