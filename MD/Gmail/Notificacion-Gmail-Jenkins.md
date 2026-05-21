@@ -16,7 +16,7 @@
 📸 **FOTO 1 A TOMAR:** Captura de pantalla de la ventana **Unlock Jenkins** con la contraseña ingresada antes de dar clic en Continue.
 Guarda la imagen como `foto1_unlock_jenkins.png` en la carpeta `imagenes` y colócala aquí:
 
-![FOTO 1: Pantalla Unlock Jenkins](imagenes/foto1_unlock_jenkins.png)
+![FOTO 1: Pantalla Unlock Jenkins](foto1_unlock_jenkins.png)
 ---
 
 ### Paso 0.2: Crear el Primer Usuario Administrador
@@ -31,7 +31,7 @@ Guarda la imagen como `foto1_unlock_jenkins.png` en la carpeta `imagenes` y col�
 📸 **FOTO 2 A TOMAR:** Captura de pantalla del formulario **Create First Admin User** con tus datos rellenos antes de hacer clic en Save and Continue.
 Guarda la imagen como `foto2_crear_usuario.png` en la carpeta `imagenes` y colócala aquí:
 
-![FOTO 2: Formulario de creación de usuario administrador](imagenes/foto2_crear_usuario.png)
+![FOTO 2: Formulario de creación de usuario administrador](foto2_crear_usuario.png)
 ---
 
 ### Paso 0.3: Panel de Control Principal de Jenkins (Dashboard)
@@ -42,7 +42,7 @@ Guarda la imagen como `foto2_crear_usuario.png` en la carpeta `imagenes` y coló
 📸 **FOTO 3 A TOMAR:** Captura de pantalla completa del panel de control principal (**Dashboard**) de Jenkins recién iniciado.
 Guarda la imagen como `foto3_dashboard_jenkins.png` en la carpeta `imagenes` y colócala aquí:
 
-![FOTO 3: Panel de control (Dashboard) de Jenkins](imagenes/foto3_dashboard_jenkins.png)
+![FOTO 3: Panel de control (Dashboard) de Jenkins](foto3_dashboard_jenkins.png)
 ---
 
 ### Paso 0.4: Descarga e Instalación de Plugins Requeridos
@@ -53,7 +53,7 @@ Guarda la imagen como `foto3_dashboard_jenkins.png` en la carpeta `imagenes` y c
 📸 **FOTO 4 A TOMAR:** Captura de pantalla del progreso de instalación de plugins (**Download progress**), mostrando la lista de plugins instalándose.
 Guarda la imagen como `foto4_descarga_plugins.png` en la carpeta `imagenes` y colócala aquí:
 
-![FOTO 4: Progreso de instalación de plugins en Jenkins](imagenes/foto4_descarga_plugins.png)
+![FOTO 4: Progreso de instalación de plugins en Jenkins](foto4_descarga_plugins.png)
 ---
 
 ---
@@ -82,14 +82,14 @@ Guarda la imagen como `foto4_descarga_plugins.png` en la carpeta `imagenes` y co
 📸 **FOTO 5 A TOMAR:** Captura de pantalla a toda la sección de **E-mail Notification** configurada con tus datos antes de darle a Save.
 Guarda la imagen como `foto5_smtp_config.png` en la carpeta `imagenes` y colócala aquí abajo:
 
-![FOTO 5: Configuración de E-mail Notification en Jenkins](imagenes/foto5_smtp_config.png)
+![FOTO 5: Configuración de E-mail Notification en Jenkins](foto5_smtp_config.png)
 ---
 
 ---
 📸 **FOTO 6 A TOMAR:** Toma una captura de pantalla del correo electrónico de prueba que te acaba de llegar a tu bandeja de entrada de Gmail (remitente "nobody@nowhere" o tu mismo correo, asunto "Test email #1").
 Guarda la imagen como `foto6_correo_prueba.png` en la carpeta `imagenes` y colócala aquí abajo:
 
-![FOTO 6: Correo de prueba recibido con éxito](imagenes/foto6_correo_prueba.png)
+![FOTO 6: Correo de prueba recibido con éxito](foto6_correo_prueba.png)
 ---
 
 ---
@@ -167,24 +167,32 @@ git push origin dev
    * En **Definition**, selecciona **Pipeline script from SCM** (Script de Pipeline desde SCM).
    * En **SCM**, selecciona **Git**.
    * En **Repository URL**, pega la URL de tu repositorio de GitHub: `https://github.com/JhonCamiloSuaza/Taller-notificacion-Jenkis.git`
-   * En **Branch Specifier (blank for 'any')**, cambia `*/master` o `*/main` por: **`*/dev`** (muy importante, ya que estamos trabajando en `dev`).
+   * En **Branch Specifier (blank for 'any')**, cambia `*/master` o `*/main` por: **`*/feat-notificacion-gmail`** (muy importante, ya que estamos trabajando en nuestra rama hija).
    * En **Script Path**, asegúrate de que diga **`Jenkinsfile`**.
-3. Haz clic en **Save** (Guardar).
-4. Haz clic en **Build Now** (Construir ahora) para ejecutar el pipeline.
-5. Cuando finalice (se pondrá en verde), entra al número de build (ej. `#1`) y abre **Console Output** (Salida de consola).
 
 ---
-📸 **FOTO 7 A TOMAR:** Captura de pantalla de la salida de consola (Console Output) en Jenkins, donde se observe que el build finalizó con éxito y se envió el correo.
-Guarda la imagen como `foto7_console_output.png` en la carpeta `imagenes` y colócala aquí abajo:
+📸 **FOTO 7 A TOMAR:** Captura de pantalla de la configuración del Pipeline en Jenkins, donde se observe la URL de GitHub y la rama `*/feat-notificacion-gmail`.
+Guarda la imagen como `foto7_pipeline_config.png` en la carpeta `imagenes` y colócala aquí abajo:
 
-![FOTO 7: Salida de consola (Console Output) mostrando el envío del correo](imagenes/foto7_console_output.png)
+![FOTO 7: Configuración del Pipeline en Jenkins](foto7_pipeline_config.png)
+---
+
+3. Haz clic en **Save** (Guardar).
+4. Haz clic en **Build Now** (Construir ahora) para ejecutar el pipeline.
+5. Cuando finalice (se pondrá en verde), entra al número de build (ej. `#2`) y abre **Console Output** (Salida de consola).
+
+---
+📸 **FOTO 8 A TOMAR:** Captura de pantalla de la salida de consola (Console Output) en Jenkins, donde se observe que el build finalizó con éxito y se envió el correo (`Finished: SUCCESS`).
+Guarda la imagen como `foto8_console_output.png` en la carpeta `imagenes` y colócala aquí abajo:
+
+![FOTO 8: Salida de consola (Console Output) mostrando el envío del correo](foto8_console_output.png)
 ---
 
 6. Revisa tu bandeja de correo Gmail.
 
 ---
-📸 **FOTO 8 A TOMAR:** Captura de pantalla de tu bandeja de entrada de Gmail (o del correo recibido abierto) mostrando la notificación de éxito enviada por Jenkins para el build real.
-Guarda la imagen como `foto8_correo_recibido.png` en la carpeta `imagenes` y colócala aquí abajo:
+📸 **FOTO 9 A TOMAR:** Captura de pantalla de tu bandeja de entrada de Gmail (o del correo recibido abierto) mostrando la notificación de éxito enviada por Jenkins para el build real.
+Guarda la imagen como `foto9_correo_recibido.png` en la carpeta `imagenes` y colócala aquí abajo:
 
-![FOTO 8: Correo del build recibido en la bandeja de entrada de Gmail](imagenes/foto8_correo_recibido.png)
+![FOTO 9: Correo del build recibido en la bandeja de entrada de Gmail](foto9_correo_recibido.png)
 ---
