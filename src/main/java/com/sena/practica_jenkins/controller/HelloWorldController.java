@@ -14,4 +14,9 @@ public class HelloWorldController {
    
         return "Hola mundo";
     }
+
+    @GetMapping("login")
+    public String login() {
+        return "Acceso concedido - Simulación de login exitoso para Gmail";
+    }
 }
