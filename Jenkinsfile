@@ -37,8 +37,8 @@ pipeline {
                  """
 
             // Telegram
-            sh """curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \\
-                -d chat_id=${TELEGRAM_CHAT_ID} \\
+            sh """curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage \\
+                -d chat_id=${env.TELEGRAM_CHAT_ID} \\
                 -d parse_mode=Markdown \\
                 -d text="✅ *Build #${env.BUILD_NUMBER} EN JENKINS*%0A*PROYECTO:* ${env.JOB_NAME}%0A*COMMIT:* ${env.GIT_COMMIT}%0A*URL:* ${env.BUILD_URL}" """
         }
@@ -56,8 +56,8 @@ pipeline {
                  """
 
             // Telegram
-            sh """curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \\
-                -d chat_id=${TELEGRAM_CHAT_ID} \\
+            sh """curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage \\
+                -d chat_id=${env.TELEGRAM_CHAT_ID} \\
                 -d parse_mode=Markdown \\
                 -d text="❌ *Build #${env.BUILD_NUMBER} EN JENKINS*%0A*PROYECTO:* ${env.JOB_NAME}%0A*COMMIT:* ${env.GIT_COMMIT}%0A*URL:* ${env.BUILD_URL}" """
         }
