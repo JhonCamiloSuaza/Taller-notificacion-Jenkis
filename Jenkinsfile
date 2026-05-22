@@ -1,13 +1,18 @@
 pipeline {
     agent any
 
+    environment {
+        TELEGRAM_TOKEN = credentials('telegram-token')
+        TELEGRAM_CHAT_ID = credentials('telegram-chatid')
+    }
+
     stages {
         stage('Build and Test') {
             steps {
                 // Dar permisos de ejecución al Maven Wrapper en Linux
                 sh 'chmod +x mvnw'
                 // Usa el wrapper Maven incluido en tu proyecto
-                sh 'mvnw clean verify'
+                sh './mvnw clean verify'
             }
         }
     }
@@ -19,10 +24,10 @@ pipeline {
                   allowEmptyResults: true
         }
 
-        // ---- NOTIFICACIÓN (ÉXITO) ----
+        // ---- NOTIFICACIÓN POR GMAIL, OUTLOOK, DISCORD Y TELEGRAM (ÉXITO) ----
         success {
-            // Notificación Gmail
-            mail to: 'jhon04suazasanchez@gmail.com',
+            // Gmail y Outlook
+            mail to: 'jhon04suazasanchez@gmail.com, jhonsuazasanchez@outlook.com',
                  subject: "✅ Build #${env.BUILD_NUMBER} EN JENKINS - EXITOSO",
                  body: """\
                      ¡El build ha finalizado correctamente!
@@ -30,17 +35,23 @@ pipeline {
                      Commit: ${env.GIT_COMMIT}
                      URL: ${env.BUILD_URL}
                  """
-            
-            // Notificación Discord
+
+            // Discord
             sh """
                 curl -H "Content-Type: application/json" -d '{"content": "✅ **EXITO EN JENKINS** | Proyecto: ${env.JOB_NAME} | Build: #${env.BUILD_NUMBER}"}' https://discordapp.com/api/webhooks/1507119197937733735/HCfw4Ch9k8aeUn2hvCE-uKMKUjuJLwv2Nqkm5ZGkq0hqHXbWxdK7tiVi8Ge83ZsscFpX
             """
+
+            // Telegram
+            sh """curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage \\
+                -d chat_id=${env.TELEGRAM_CHAT_ID} \\
+                -d parse_mode=Markdown \\
+                -d text="✅ *Build #${env.BUILD_NUMBER} EN JENKINS*%0A*PROYECTO:* ${env.JOB_NAME}%0A*COMMIT:* ${env.GIT_COMMIT}%0A*URL:* ${env.BUILD_URL}" """
         }
 
-        // ---- NOTIFICACIÓN (FALLA) ----
+        // ---- NOTIFICACIÓN POR GMAIL, OUTLOOK, DISCORD Y TELEGRAM (FALLA) ----
         failure {
-            // Notificación Gmail
-            mail to: 'jhon04suazasanchez@gmail.com',
+            // Gmail y Outlook
+            mail to: 'jhon04suazasanchez@gmail.com, jhonsuazasanchez@outlook.com',
                  subject: "❌ Build #${env.BUILD_NUMBER} EN JENKINS - FALLÓ",
                  body: """\
                      El build ha fallado.
@@ -49,10 +60,16 @@ pipeline {
                      Commit: ${env.GIT_COMMIT}
                  """
 
-            // Notificación Discord
+            // Discord
             sh """
                 curl -H "Content-Type: application/json" -d '{"content": "❌ **FALLO EN JENKINS** | Proyecto: ${env.JOB_NAME} | Build: #${env.BUILD_NUMBER}"}' https://discordapp.com/api/webhooks/1507119197937733735/HCfw4Ch9k8aeUn2hvCE-uKMKUjuJLwv2Nqkm5ZGkq0hqHXbWxdK7tiVi8Ge83ZsscFpX
             """
+
+            // Telegram
+            sh """curl -s -X POST https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/sendMessage \\
+                -d chat_id=${env.TELEGRAM_CHAT_ID} \\
+                -d parse_mode=Markdown \\
+                -d text="❌ *Build #${env.BUILD_NUMBER} EN JENKINS*%0A*PROYECTO:* ${env.JOB_NAME}%0A*COMMIT:* ${env.GIT_COMMIT}%0A*URL:* ${env.BUILD_URL}" """
         }
     }
 }
