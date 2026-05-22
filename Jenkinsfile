@@ -19,9 +19,9 @@ pipeline {
                   allowEmptyResults: true
         }
 
-        // ---- NOTIFICACIÓN POR GMAIL (ÉXITO) ----
+        // ---- NOTIFICACIÓN POR GMAIL Y OUTLOOK (ÉXITO) ----
         success {
-            mail to: 'jhon04suazasanchez@gmail.com',
+            mail to: 'jhon04suazasanchez@gmail.com, jhonsuazasanchez@outlook.com',
                  subject: "✅ Build #${env.BUILD_NUMBER} EN JENKINS - EXITOSO",
                  body: """\
                      ¡El build ha finalizado correctamente!
@@ -31,9 +31,9 @@ pipeline {
                  """
         }
 
-        // ---- NOTIFICACIÓN POR GMAIL (FALLA) ----
+        // ---- NOTIFICACIÓN POR GMAIL Y OUTLOOK (FALLA) ----
         failure {
-            mail to: 'jhon04suazasanchez@gmail.com',
+            mail to: 'jhon04suazasanchez@gmail.com, jhonsuazasanchez@outlook.com',
                  subject: "❌ Build #${env.BUILD_NUMBER} EN JENKINS - FALLÓ",
                  body: """\
                      El build ha fallado.
