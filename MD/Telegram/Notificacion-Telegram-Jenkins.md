@@ -51,7 +51,12 @@ Se realizó el primer `git push` a la rama `feat-notificacion-telegram`. Jenkins
 
 ## 📸 Paso 4: Iteración 2 – Error intencional en nueva rama (FAILURE ❌)
 
-*(Continúa en la rama `feature/auth-error-telegram` — ver commit y captura FOTO 5)*
+Se creó la rama `feature/auth-error-telegram` a partir de `feat-notificacion-telegram`. En `PracticaJenkinsApplicationTests.java` se añadió un fallo simulado para que Maven falle y Jenkins dispare el bloque `failure` del `Jenkinsfile`.
+
+**Rama:** `feature/auth-error-telegram`  
+**Jenkins (Branch Specifier):** `*/feature/auth-error-telegram`
+
+Tras `git push`, el pipeline terminó en rojo y llegó la notificación ❌ a Telegram.
 
 ![FOTO 5: Mensaje de error en Telegram](foto5_failure_telegram.png)
 
