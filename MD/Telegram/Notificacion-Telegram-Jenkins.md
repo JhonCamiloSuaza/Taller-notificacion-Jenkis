@@ -51,7 +51,12 @@ Se realizó el primer `git push` a la rama `feat-notificacion-telegram`. Jenkins
 
 ## 📸 Paso 4: Iteración 2 – Error intencional en nueva rama (FAILURE ❌)
 
-*(Continúa en la rama `feature/auth-error-telegram` — ver commit y captura FOTO 5)*
+Se creó la rama `feature/auth-error-telegram` a partir de `feat-notificacion-telegram`. En `PracticaJenkinsApplicationTests.java` se añadió un fallo simulado para que Maven falle y Jenkins dispare el bloque `failure` del `Jenkinsfile`.
+
+**Rama:** `feature/auth-error-telegram`  
+**Jenkins (Branch Specifier):** `*/feature/auth-error-telegram`
+
+Tras `git push`, el pipeline terminó en rojo y llegó la notificación ❌ a Telegram.
 
 ![FOTO 5: Mensaje de error en Telegram](foto5_failure_telegram.png)
 
@@ -59,6 +64,17 @@ Se realizó el primer `git push` a la rama `feat-notificacion-telegram`. Jenkins
 
 ## 📸 Paso 5: Iteración 3 – Corrección del error (SUCCESS ✅)
 
-*(Continúa en la rama `feature/login-ui-telegram` — ver commit y captura FOTO 6)*
+Se creó la rama `feature/login-ui-telegram`, se eliminó el `fail()` del test y se hizo push. Jenkins volvió a ejecutar en verde y llegó de nuevo la notificación ✅ (build automático por webhook).
+
+**Rama:** `feature/login-ui-telegram`  
+**Jenkins (Branch Specifier):** `*/feature/login-ui-telegram`
 
 ![FOTO 6: Build automático (éxito) en Telegram](foto6_build_auto_telegram.png)
+
+---
+
+## ✅ Conclusiones
+
+- **Telegram** se integra con una llamada HTTP (`curl`) en el bloque `post` del pipeline.
+- Las credenciales viven en el *Credentials Store* de Jenkins (`telegram-token`, `telegram-chatid`).
+- Tres ramas documentan el flujo: `feat-notificacion-telegram` (éxito inicial), `feature/auth-error-telegram` (fallo), `feature/login-ui-telegram` (corrección).
