@@ -19,8 +19,9 @@ pipeline {
                   allowEmptyResults: true
         }
 
-        // ---- NOTIFICACIÓN POR GMAIL (ÉXITO) ----
+        // ---- NOTIFICACIÓN (ÉXITO) ----
         success {
+            // Notificación Gmail
             mail to: 'jhon04suazasanchez@gmail.com',
                  subject: "✅ Build #${env.BUILD_NUMBER} EN JENKINS - EXITOSO",
                  body: """\
@@ -29,10 +30,16 @@ pipeline {
                      Commit: ${env.GIT_COMMIT}
                      URL: ${env.BUILD_URL}
                  """
+            
+            // Notificación Discord
+            sh """
+                curl -H "Content-Type: application/json" -d '{"content": "✅ **EXITO EN JENKINS** | Proyecto: ${env.JOB_NAME} | Build: #${env.BUILD_NUMBER}"}' https://discordapp.com/api/webhooks/1507119197937733735/HCfw4Ch9k8aeUn2hvCE-uKMKUjuJLwv2Nqkm5ZGkq0hqHXbWxdK7tiVi8Ge83ZsscFpX
+            """
         }
 
-        // ---- NOTIFICACIÓN POR GMAIL (FALLA) ----
+        // ---- NOTIFICACIÓN (FALLA) ----
         failure {
+            // Notificación Gmail
             mail to: 'jhon04suazasanchez@gmail.com',
                  subject: "❌ Build #${env.BUILD_NUMBER} EN JENKINS - FALLÓ",
                  body: """\
@@ -41,6 +48,11 @@ pipeline {
                      Proyecto: ${env.JOB_NAME}
                      Commit: ${env.GIT_COMMIT}
                  """
+
+            // Notificación Discord
+            sh """
+                curl -H "Content-Type: application/json" -d '{"content": "❌ **FALLO EN JENKINS** | Proyecto: ${env.JOB_NAME} | Build: #${env.BUILD_NUMBER}"}' https://discordapp.com/api/webhooks/1507119197937733735/HCfw4Ch9k8aeUn2hvCE-uKMKUjuJLwv2Nqkm5ZGkq0hqHXbWxdK7tiVi8Ge83ZsscFpX
+            """
         }
     }
 }
