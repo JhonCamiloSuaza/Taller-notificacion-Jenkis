@@ -19,4 +19,9 @@ public class HelloWorldController {
     public String login() {
         return "Acceso concedido - Simulación de login exitoso para Gmail";
     }
+
+    @GetMapping("login-outlook")
+    public String loginOutlook() {
+        return "Acceso concedido - Simulación de login exitoso para Outlook";
+    }
 }

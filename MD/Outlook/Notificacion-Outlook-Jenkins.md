@@ -36,30 +36,19 @@ mail to: 'jhonsuazasanchez@outlook.com',
 
 ---
 
-## 📸 Paso 2: Iteración 1 – Primera prueba de éxito (SUCCESS ✅)
+## 📸 Paso 2: Iteración 1 – Ejecución automática y Error en pruebas (FAILURE ❌)
 
-Se realizó el primer `git push` con la configuración de correo integrada al `Jenkinsfile`. Jenkins ejecutó el pipeline correctamente y envió la notificación de éxito a la bandeja de entrada de Outlook.
+Jenkins detectó el `push` automáticamente a través del Webhook de GitHub y ejecutó el pipeline. Debido a un error de configuración en el comando de Maven en el entorno Linux, la etapa de compilación y pruebas falló. Esto activó el bloque `failure` del pipeline, enviando de manera automática la notificación de error a Outlook.
 
-*(Falta capturar la FOTO 1 cuando llegue el primer correo de éxito)*
-![FOTO 1: Mensaje de éxito en Outlook](foto1_mensaje_exito_outlook.png)
-
----
-
-## 📸 Paso 3: Iteración 2 – Ejecución automática y Error intencional (FAILURE ❌)
-
-Se introdujo un fallo intencional en el archivo de pruebas `PracticaJenkinsApplicationTests.java` (`Assertions.fail()`). El Webhook de GitHub detectó el `push` automáticamente y Jenkins ejecutó el pipeline. Al fallar la etapa de tests, se envió la notificación de error a Outlook.
-
-*(Falta capturar la FOTO 2 cuando llegue el correo de fallo)*
-![FOTO 2: Mensaje de error en Outlook](foto2_error_outlook.png)
+![FOTO 1: Mensaje de error en Outlook](foto1_error_outlook.png)
 
 ---
 
-## 📸 Paso 4: Iteración 3 – Corrección del error (SUCCESS ✅)
+## 📸 Paso 3: Iteración 2 – Corrección del error (SUCCESS ✅)
 
-Se eliminó el `Assertions.fail()` del archivo de pruebas, restaurando el test. Al hacer el nuevo `push`, Jenkins se disparó automáticamente, el pipeline pasó en verde y Outlook recibió el correo de éxito confirmando la reparación.
+Se reparó el `Jenkinsfile` ajustando el comando a `./mvnw` para otorgar compatibilidad con el entorno de ejecución Linux. Al realizar el nuevo `push`, Jenkins se disparó automáticamente, el pipeline pasó todas sus etapas en verde y Outlook recibió el correo de éxito confirmando la reparación del proyecto.
 
-*(Falta capturar la FOTO 3 cuando llegue el correo de reparación)*
-![FOTO 3: Mensaje de éxito tras corrección en Outlook](foto3_fix_success_outlook.png)
+![FOTO 2: Mensaje de éxito tras corrección en Outlook](foto2_exito_outlook.png)
 
 ---
 
